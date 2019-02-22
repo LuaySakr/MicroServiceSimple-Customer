@@ -5,13 +5,14 @@ var CustomerCtrl = function(Customer){
 	var CustomerObj = {};
 
 	CustomerObj.PostCustomer = function(req, res, next){
+		console.log(req);
 		var newCustomer = new Customer(req.body);
 		newCustomer.save(function(err, customer){
 			if(err){
 				res.json({status: false, error: err.message});
 				return;
 			}
-			res.json({status: true, customer: customer});
+			res.json({status: true, number: req.body});
 		});
 	}
 

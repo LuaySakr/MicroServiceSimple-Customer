@@ -3,15 +3,18 @@ var Schema = mongoose.Schema;
 
 // Customer schema
 var CustomerSchema = new Schema({
-	customer: String,
+	number: Number,
+	name: String,
+	adrs: String,
 	completed: { type:Boolean, default: false },
 	created_by: { type: Date, default: Date.now }
 });
 
 // True since it is a parallel middleware
 CustomerSchema.pre('save', function(next, done) {
-	if(!this.customer){
-		next(new Error("customer should not be null"));
+	if(!this.number){
+		console.log(this)
+		next(new Error("customer number should not be null"));
 	}
   	next();
 });
