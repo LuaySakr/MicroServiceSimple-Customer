@@ -28,8 +28,8 @@ var CustomerCtrl = function(Customer){
 
 	CustomerObj.UpdateCustomer = function(req, res, next){
 		var completed = req.body.completed;
-		Customer.findById(req.params.customer_id, function(err, customer){
-			customer.completed = completed;
+		Customer.findById(req.params.number, function(err, customer){
+			//customer.completed = completed;
 			customer.save(function(err, customer){
 				if(err) {
 					res.json({status: false, error: "Status not updated"});
@@ -40,7 +40,7 @@ var CustomerCtrl = function(Customer){
 	}
 
 	CustomerObj.DeleteCustomer = function(req, res, next){
-		Customer.remove({_id : req.params.customer_id }, function(err, customer){
+		Customer.remove({number : req.params.number }, function(err, customer){
 			if(err) {
 				res.json({status: false, error: "Deleting customer is not successfull"});
 			}

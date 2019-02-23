@@ -7,8 +7,8 @@ module.exports = function(app){
 	
 	app.post('/api/customers', CustomerController.PostCustomer);
 
-	app.put('/api/customers/:customer_id', CustomerController.UpdateCustomer);
+	app.put('/api/customers/:number', CustomerController.UpdateCustomer);
 
-	app.delete('/api/customers/:customer_id', CustomerController.DeleteCustomer);
+	app.delete('/api/customers/:number', CustomerController.DeleteCustomer);
 
 }
