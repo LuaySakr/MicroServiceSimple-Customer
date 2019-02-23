@@ -13,7 +13,10 @@ var CustomerSchema = new Schema({
 // True since it is a parallel middleware
 CustomerSchema.pre('save', function(next, done) {
 	if(!this.number){
+		console.log("000000000")
+			
 		console.log(this)
+		console.log("000000000")
 		next(new Error("customer number should not be null"));
 	}
   	next();
