@@ -42,6 +42,9 @@ pipeline{
 }
     agent any
     stages  {
+        stage{
+            echo "test"
+        }
         // stage('Build Temp Docker - B') { 
         //     steps {
         //         //    sh 'docker login -u="${keyUser}" -p="${keyPass}"'
