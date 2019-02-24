@@ -29,7 +29,7 @@ var CustomerCtrl = function(Customer){
 	CustomerObj.UpdateCustomer = function(req, res, next){
 		var completed = req.body.completed;
 		Customer.findById(req.params.number, function(err, customer){
-			//customer.completed = completed;
+	
 			customer.save(function(err, customer){
 				if(err) {
 					res.json({status: false, error: "Status not updated"});
