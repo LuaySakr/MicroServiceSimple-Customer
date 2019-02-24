@@ -1,26 +1,26 @@
 pipeline{
-    environment{ 
-            // def file = readFile("${env.WORKSPACE}/JF.conf");
-            // def repoName = file.split('repo:');
-            // def repo = repoName[1].split(';')[0].trim();
-            // def port = file.split('port:');
-            // def repoPort = port[1].split(';')[0].trim();
-            // def slave = file.split('slave:');
-            // def repoSecondPort = slave[1].split(';')[0].trim();  
-            // def user = file.split('keyUser:');
-            // def keyUser = user[1].split(';')[0].trim();   
-            // def pass = file.split('keyPass:');
-            // def keyPass = pass[1].split(';')[0].trim();  
-            // def network = file.split('networkName:');
-            // def networkName = network[1].split(';')[0].trim();   
-            // def tempDockerImageName = "luayskar/temp-${repo}-image";
-            // def officialDockerImageName = "luayskar/official-${repo}-image"; 
-            // def tempDockerContainerName = "temp-${repo}-cont";
-            // def officialDockerContainerName = "${repo}-dev-cont";    
-            // def tagName = "${BUILD_TAG}"; 
+    // environment{ 
+    //         // def file = readFile("${env.WORKSPACE}/JF.conf");
+    //         // def repoName = file.split('repo:');
+    //         // def repo = repoName[1].split(';')[0].trim();
+    //         // def port = file.split('port:');
+    //         // def repoPort = port[1].split(';')[0].trim();
+    //         // def slave = file.split('slave:');
+    //         // def repoSecondPort = slave[1].split(';')[0].trim();  
+    //         // def user = file.split('keyUser:');
+    //         // def keyUser = user[1].split(';')[0].trim();   
+    //         // def pass = file.split('keyPass:');
+    //         // def keyPass = pass[1].split(';')[0].trim();  
+    //         // def network = file.split('networkName:');
+    //         // def networkName = network[1].split(';')[0].trim();   
+    //         // def tempDockerImageName = "luayskar/temp-${repo}-image";
+    //         // def officialDockerImageName = "luayskar/official-${repo}-image"; 
+    //         // def tempDockerContainerName = "temp-${repo}-cont";
+    //         // def officialDockerContainerName = "${repo}-dev-cont";    
+    //         // def tagName = "${BUILD_TAG}"; 
 
 
-        }
+    //     }
  post {
  always {
    sh 'echo "This will always run"'
