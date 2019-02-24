@@ -44,14 +44,14 @@ pipeline{
     stages  {
         stage('Build Temp Docker - B') { 
             steps {
-                //    sh 'docker login -u="${keyUser}" -p="${keyPass}"'
-                //    echo "repo : ${repo} .... repoPort : ${repoPort} .... keyUser : ${keyUser} .... keyPass : ${keyPass} .... networkName : ${networkName} .... tag : ${tagName}"
+                   sh 'docker login -u="${keyUser}" -p="${keyPass}"'
+                   echo "repo : ${repo} .... repoPort : ${repoPort} .... keyUser : ${keyUser} .... keyPass : ${keyPass} .... networkName : ${networkName} .... tag : ${tagName}"
   
-                //    //check the network exists and create it
-                //    sh "docker network create ${networkName} || true"
-                //    //craete the docker image  
-                //    sh "docker build --network ${networkName} --tag ${tempDockerImageName}:latest ." 
-                //    sh "docker build --network ${networkName} --tag ${tempDockerImageName}:${tagName} ." 
+                   //check the network exists and create it
+                   sh "docker network create ${networkName} || true"
+                   //craete the docker image  
+                   sh "docker build --network ${networkName} --tag ${tempDockerImageName}:latest ." 
+                   sh "docker build --network ${networkName} --tag ${tempDockerImageName}:${tagName} ." 
                    echo "docker image ${tempDockerImageName} within network ${networkName} created successfully" 
                    
             }
@@ -60,22 +60,22 @@ pipeline{
             steps {  
                 script {
                          try{
-                            //    sh "docker kill ${tempDockerContainerName}"
-                            //    sh "docker rm ${tempDockerContainerName}" 
+                               sh "docker kill ${tempDockerContainerName}"
+                               sh "docker rm ${tempDockerContainerName}" 
                                echo "docker ${tempDockerContainerName} deleteded successfully"
                          }  
                         catch (exc) {
                             echo "${tempDockerContainerName} is ready to build "
                          }
                          try{ 
-                        //    sh "docker run -d --network ${networkName} --name ${tempDockerContainerName} -p ${repoPort}:${repoSecondPort} ${tempDockerImageName}:latest"
+                           sh "docker run -d --network ${networkName} --name ${tempDockerContainerName} -p ${repoPort}:${repoSecondPort} ${tempDockerImageName}:latest"
                            echo "docker container ${tempDockerContainerName} within network ${networkName} created successfully"            
                          
                          }
                          catch (exc){ 
                              try{
                                     echo "${tempDockerContainerName} is roleback to previous version "
-                                    // sh "docker pull ${tempDockerImageName}:latest"
+                                    sh "docker pull ${tempDockerImageName}:latest"
                                }catch(ex){
                                     echo "${tempDockerContainerName} have no previous version " 
                              }
@@ -98,8 +98,8 @@ pipeline{
         stage('Build Official Docker - G') { 
             steps {     
                    //craete the docker image  
-                //    sh "docker build --network ${networkName} --tag ${officialDockerImageName}:latest ." 
-                //    sh "docker build --network ${networkName} --tag ${officialDockerImageName}:${tagName} ." 
+                   sh "docker build --network ${networkName} --tag ${officialDockerImageName}:latest ." 
+                   sh "docker build --network ${networkName} --tag ${officialDockerImageName}:${tagName} ." 
                    echo "docker image ${officialDockerImageName} within network ${networkName} created successfully"              
             }
         }
@@ -107,23 +107,23 @@ pipeline{
           steps {  
                 script {
                          try{ 
-                            //    sh "docker kill ${tempDockerContainerName}"
-                            //    sh "docker rm ${tempDockerContainerName}" 
-                            //    sh "docker kill ${officialDockerContainerName}" 
+                               sh "docker kill ${tempDockerContainerName}"
+                               sh "docker rm ${tempDockerContainerName}" 
+                               sh "docker kill ${officialDockerContainerName}" 
                                echo "docker ${officialDockerContainerName} deleteded successfully"
                             }  
                             catch(exc)
                                 {
                                     try{
-                                        //    sh "docker rm ${tempDockerContainerName}" 
-                                        //    sh "docker kill ${officialDockerContainerName}" 
-                                        //    sh "docker rm ${officialDockerContainerName}" 
+                                           sh "docker rm ${tempDockerContainerName}" 
+                                           sh "docker kill ${officialDockerContainerName}" 
+                                           sh "docker rm ${officialDockerContainerName}" 
                                            echo "docker ${officialDockerContainerName} deleteded successfully"
                                        }
                             catch(ex)
                             {
                                 try{
-                                    //  sh "docker rm ${officialDockerContainerName}" 
+                                     sh "docker rm ${officialDockerContainerName}" 
                                      echo "docker ${officialDockerContainerName} deleteded successfully"
                                     }
                                 catch(err)
@@ -133,13 +133,13 @@ pipeline{
                             echo "${officialDockerContainerName} is ready to build "
                          }
                          try{ 
-                        //    sh "docker run -d --network ${networkName} --name ${officialDockerContainerName} -p ${repoPort}:${repoSecondPort} ${officialDockerImageName}:latest"
+                           sh "docker run -d --network ${networkName} --name ${officialDockerContainerName} -p ${repoPort}:${repoSecondPort} ${officialDockerImageName}:latest"
                            echo "docker container ${officialDockerContainerName}:latest within network ${networkName} created successfully"            
                          
                          }
                          catch (exc){ 
                              try{
-                                    // echo "${officialDockerContainerName} is roleback to previous version "
+                                    echo "${officialDockerContainerName} is roleback to previous version "
                                     sh "docker pull ${officialDockerImageName}:latest"
                              }
                               catch(ex){
