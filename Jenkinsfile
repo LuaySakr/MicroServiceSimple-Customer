@@ -43,7 +43,9 @@ pipeline{
     agent any
     stages  {
         stage{
+            steps{
             echo "test"
+            }
         }
         // stage('Build Temp Docker - B') { 
         //     steps {
